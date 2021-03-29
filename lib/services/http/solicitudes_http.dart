@@ -40,20 +40,16 @@ class SolicitudesHttp {
     Uri url = Uri.http(_hostname, ruta, paramsJson);
     Response response = await http.get(url, headers: header);
 
-    if (response.statusCode == 200) {
-      if (debugger) print(response.body);
+    if (debugger) print(response.body);
 
-      // Si se hace exitosamente
-      return Respuestas(
-        statusCode: response.statusCode,
-        headers: response.headers,
-        contentType: response.headers['content-type'],
-        body: response.body,
-      );
-    } else {
-      // Si no se hace exitosamente
-      throw Exception('Error en la solicitud | Código: ${response.statusCode}');
-    }
+    // Si se hace exitosamente
+    return Respuestas(
+      statusCode: response.statusCode,
+      headers: response.headers,
+      contentType: response.headers['content-type'],
+      body: response.body,
+      autenticado: stringToBool(response.headers["Autenticado"]),
+    );
   }
 
   // Para crear cosas en el servidor
@@ -65,20 +61,16 @@ class SolicitudesHttp {
     Uri url = Uri.http(_hostname, ruta, paramsJson);
     Response response = await http.post(url, headers: header, body: jsonEncode(bodyJson));
 
-    if (response.statusCode == 200) {
-      if (debugger) print(response.body);
+    if (debugger) print(response.body);
 
-      // Si se hace exitosamente
-      return Respuestas(
-        statusCode: response.statusCode,
-        headers: response.headers,
-        contentType: response.headers['content-type'],
-        body: response.body,
-      );
-    } else {
-      // Si no se hace exitosamente
-      throw Exception('Error en la solicitud | Código: ${response.statusCode}');
-    }
+    // Si se hace exitosamente
+    return Respuestas(
+      statusCode: response.statusCode,
+      headers: response.headers,
+      contentType: response.headers['content-type'],
+      body: response.body,
+      autenticado: stringToBool(response.headers["Autenticado"]),
+    );
   }
 
   // Para modificar cosas en el servidor
@@ -90,20 +82,16 @@ class SolicitudesHttp {
     Uri url = Uri.http(_hostname, ruta, paramsJson);
     Response response = await http.put(url, headers: header, body: jsonEncode(bodyJson));
 
-    if (response.statusCode == 200) {
-      if (debugger) print(response.body);
+    if (debugger) print(response.body);
 
-      // Si se hace exitosamente
-      return Respuestas(
-        statusCode: response.statusCode,
-        headers: response.headers,
-        contentType: response.headers['content-type'],
-        body: response.body,
-      );
-    } else {
-      // Si no se hace exitosamente
-      throw Exception('Error en la solicitud | Código: ${response.statusCode}');
-    }
+    // Si se hace exitosamente
+    return Respuestas(
+      statusCode: response.statusCode,
+      headers: response.headers,
+      contentType: response.headers['content-type'],
+      body: response.body,
+      autenticado: stringToBool(response.headers["Autenticado"]),
+    );
   }
 
   // Para elliminar cosas en el servidor
@@ -115,13 +103,12 @@ class SolicitudesHttp {
     Uri url = Uri.http(_hostname, ruta, paramsJson);
     Response response = await http.delete(url, headers: header, body: jsonEncode(bodyJson));
 
-    if (response.statusCode == 200) {
-      if (debugger) print(response.body);
-      // Si se hace exitosamente
-      return true;
-    } else {
-      // Si no se hace exitosamente
-      throw Exception('Error en la solicitud | Código: ${response.statusCode}');
-    }
+    if (debugger) print(response.body);
+    // Si se hace exitosamente
+    return true;
+  }
+
+  bool stringToBool(String str) {
+    return str.toLowerCase() == 'true';
   }
 }

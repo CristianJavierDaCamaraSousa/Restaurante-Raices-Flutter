@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurante_raices/screens/pagina_ejemplo.dart';
+import 'package:restaurante_raices/screens/Principal/pagina_ejemplo.dart';
 import 'package:restaurante_raices/services/get_it.dart';
 import 'package:restaurante_raices/services/repository/usuario_repository.dart';
 
