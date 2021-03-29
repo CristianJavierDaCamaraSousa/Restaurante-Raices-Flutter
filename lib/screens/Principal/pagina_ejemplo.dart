@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurante_raices/models/plantilla_autenticacion.dart';
 import 'package:restaurante_raices/services/get_it.dart';
 import 'package:restaurante_raices/services/repository/usuario_repository.dart';
-import 'package:restaurante_raices/shared/texto_arreglado.dart';
+import 'package:restaurante_raices/shared/components/constants.dart';
 
 class PaginaEjemplo extends StatefulWidget {
   @override
@@ -27,10 +28,10 @@ class _PaginaEjemploState extends State<PaginaEjemplo> {
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      loginCorrecto = getIt.get<UsuarioRepository>().loginPruebaUsuarioUser();
+                      loginCorrecto = getIt.get<UsuarioRepository>().logoutTEMPORAL();
                     });
                   },
-                  child: Text("Logear Usuario User"),
+                  child: Text("Logout"),
                 ),
                 TextButton(
                   onPressed: () {
@@ -38,9 +39,9 @@ class _PaginaEjemploState extends State<PaginaEjemplo> {
                   },
                   child: Text("PruebaLogin"),
                 ),
-                Consumer<String>(
+                Consumer<MensajePOJO>(
                   builder: (context, value, child) {
-                    return textoArreglado(size: size, texto: "$value");
+                    return textoArreglado(size: size, texto: "${value.mensaje}");
                   },
                 ),
                 FutureBuilder(

@@ -1,11 +1,11 @@
-class Respuestas {
+class RespuestasHTTP {
   int statusCode;
   Map<String, String> headers;
   String contentType;
   String body;
   bool autenticado;
 
-  Respuestas({
+  RespuestasHTTP({
     this.statusCode,
     this.headers,
     this.contentType,

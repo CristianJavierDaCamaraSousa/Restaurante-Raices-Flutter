@@ -1,25 +1,31 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:restaurante_raices/services/http/respuestas.dart';
+import 'package:restaurante_raices/models/plantilla_autenticacion.dart';
+import 'package:restaurante_raices/models/respuestas_http.dart';
 import 'package:restaurante_raices/services/http/solicitudes_http.dart';
 
 class UsuarioRepository {
   SolicitudesHttp solicitudes;
   String keyJWT = "Bearer ";
 
-  final StreamController<String> _mensaje = StreamController();
-  final StreamController<bool> _logeado = StreamController();
+  final StreamController<MensajePOJO> _mensaje = StreamController();
+  final StreamController<TokenPOJO> _token = StreamController();
+  final StreamController<LogeadoPOJO> _logeado = StreamController();
 
   UsuarioRepository() {
     solicitudes = SolicitudesHttp();
   }
 
-  Stream<String> get streamMensajes {
+  Stream<MensajePOJO> get streamMensajes {
     return _mensaje.stream;
   }
 
-  Stream<bool> get streamLogeado {
+  Stream<TokenPOJO> get streamToken {
+    return _token.stream;
+  }
+
+  Stream<LogeadoPOJO> get streamLogeado {
     return _logeado.stream;
   }
 
@@ -40,7 +46,7 @@ class UsuarioRepository {
 
   Future<bool> login({@required String user, @required String password}) async {
     if (!estaLogeado()) {
-      Respuestas res = await solicitudes.solicitudPost(
+      RespuestasHTTP res = await solicitudes.solicitudPost(
         ruta: "/login",
         bodyJson: {
           "username": user,
@@ -50,7 +56,8 @@ class UsuarioRepository {
 
       if (res.body != null) {
         this.keyJWT += res.body;
-        _logeado.sink.add(true);
+        _token.sink.add(TokenPOJO(this.keyJWT));
+        _logeado.sink.add(LogeadoPOJO(true));
         //_mensaje.sink.add(this.keyJWT);
         return true;
       }
@@ -62,7 +69,7 @@ class UsuarioRepository {
   pruebaCredenciales() async {
     print("Iniciado");
 
-    Respuestas res = await solicitudes.solicitudGet(
+    RespuestasHTTP res = await solicitudes.solicitudGet(
       ruta: "/",
       encabezado: {"Authorization": this.keyJWT},
     );
@@ -71,7 +78,7 @@ class UsuarioRepository {
 
     if (res.body != null) {
       print(res.body);
-      //_mensaje.sink.add(res.body);
+      _mensaje.sink.add(MensajePOJO(res.body));
     }
 
     // Si no se hace exitosamente
@@ -80,11 +87,17 @@ class UsuarioRepository {
     print("finalizado");
   }
 
-  _preprocesadoRespuesta(Respuestas respuesta) {
+  logoutTEMPORAL() {
+    _token.sink.add(TokenPOJO("Bear "));
+    _logeado.sink.add(LogeadoPOJO(false));
+  }
+
+  _preprocesadoRespuesta(RespuestasHTTP respuesta) {
     if (respuesta.statusCode != 200) {
       if (!respuesta.autenticado) {
         this.keyJWT = "Bearer ";
-        _logeado.sink.add(false);
+        _token.sink.add(TokenPOJO(this.keyJWT));
+        _logeado.sink.add(LogeadoPOJO(false));
       }
     }
   }

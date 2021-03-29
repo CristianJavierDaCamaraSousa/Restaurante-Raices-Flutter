@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-
-import 'respuestas.dart';
+import 'package:restaurante_raices/models/respuestas_http.dart';
 
 class SolicitudesHttp {
   String _hostname;
@@ -43,7 +42,7 @@ class SolicitudesHttp {
     if (debugger) print(response.body);
 
     // Si se hace exitosamente
-    return Respuestas(
+    return RespuestasHTTP(
       statusCode: response.statusCode,
       headers: response.headers,
       contentType: response.headers['content-type'],
@@ -64,7 +63,7 @@ class SolicitudesHttp {
     if (debugger) print(response.body);
 
     // Si se hace exitosamente
-    return Respuestas(
+    return RespuestasHTTP(
       statusCode: response.statusCode,
       headers: response.headers,
       contentType: response.headers['content-type'],
@@ -85,7 +84,7 @@ class SolicitudesHttp {
     if (debugger) print(response.body);
 
     // Si se hace exitosamente
-    return Respuestas(
+    return RespuestasHTTP(
       statusCode: response.statusCode,
       headers: response.headers,
       contentType: response.headers['content-type'],
@@ -109,6 +108,9 @@ class SolicitudesHttp {
   }
 
   bool stringToBool(String str) {
-    return str.toLowerCase() == 'true';
+    if (str != null)
+      return str.toLowerCase() == 'true';
+    else
+      return false;
   }
 }

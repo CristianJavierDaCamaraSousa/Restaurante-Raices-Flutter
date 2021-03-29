@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-/*
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:restaurante_raices/screens/Login/components/boton_redondeado.dart';
+import 'package:restaurante_raices/screens/Login/components/input_field_redondeado.dart';
+import 'package:restaurante_raices/screens/Login/components/password_field_redondeado.dart';
+import 'package:restaurante_raices/services/get_it.dart';
+import 'package:restaurante_raices/services/repository/usuario_repository.dart';
+import 'package:restaurante_raices/shared/components/constants.dart';
+import 'package:restaurante_raices/shared/components/loading.dart';
+import 'package:restaurante_raices/shared/components/pantalla_fix.dart';
+
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -63,7 +72,7 @@ class _BodyState extends State<Body> {
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
                       setState(() => loading = true);
-                      dynamic result = await AuthService().signInEmailPassword(email, password);
+                      dynamic result = await getIt.get<UsuarioRepository>().loginPruebaUsuarioUser();
                       if (result == null) {
                         setState(() {
                           loading = false;
@@ -78,28 +87,6 @@ class _BodyState extends State<Body> {
                   error,
                   style: TextStyle(color: Colors.amber),
                 ),
-                SizedBox(height: size.height * 0.02),
-                YaTengoUnaCuenta(
-                  press: () => Navigator.pushReplacementNamed(context, '/SignUp'),
-                ),
-                Division(text: "O"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SocalIcon(
-                      iconSrc: "assets/icons/facebook.svg",
-                      press: () {},
-                    ),
-                    SocalIcon(
-                      iconSrc: "assets/icons/twitter.svg",
-                      press: () {},
-                    ),
-                    SocalIcon(
-                      iconSrc: "assets/icons/google-plus.svg",
-                      press: () {},
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
@@ -108,9 +95,10 @@ class _BodyState extends State<Body> {
     } else {
       return PantallaFix(
         background: fondoBienvenida(),
-        children: [Loading()],
+        children: [
+          Loading(),
+        ],
       );
     }
   }
 }
-*/
