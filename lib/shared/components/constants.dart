@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 
-const ColorPrimarioClaro = Color(0xFFb71c1c);
-const ColorSecundarioClaro = Color(0xFFFFFFF2);
+const ColorPrimario = Color(0xFF000000);
+const ColorSecundario = Color(0xFFFFFFFF);
+
+Container fondoSolido() {
+  return Container(
+    decoration: BoxDecoration(
+      color: Colors.grey[900],
+    ),
+  );
+}
 
 Container fondoBienvenida({Widget child}) {
   return Container(
     child: child,
     decoration: BoxDecoration(
       gradient: LinearGradient(
-        colors: [Colors.indigo[600], Colors.indigo[700], Colors.indigo[800], Colors.indigo[900]],
+        colors: [
+          Colors.black,
+          Color(0xFF111111),
+          Colors.black,
+        ],
         begin: Alignment.topRight,
         end: Alignment.bottomLeft,
       ),

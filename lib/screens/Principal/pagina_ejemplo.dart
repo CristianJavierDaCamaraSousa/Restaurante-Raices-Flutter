@@ -16,7 +16,8 @@ class _PaginaEjemploState extends State<PaginaEjemplo> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    MediaQueryData mq = MediaQuery.maybeOf(context);
+    Size size = mq.size ?? 0;
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

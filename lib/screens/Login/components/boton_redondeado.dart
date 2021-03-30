@@ -9,13 +9,14 @@ class BotonRedondeado extends StatelessWidget {
     Key key,
     this.text,
     this.onPressed,
-    this.color = ColorPrimarioClaro,
+    this.color = ColorPrimario,
     this.textColor = Colors.white,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    MediaQueryData mq = MediaQuery.maybeOf(context);
+    Size size = mq.size ?? 0;
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),

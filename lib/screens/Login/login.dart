@@ -6,7 +6,6 @@ import 'package:restaurante_raices/screens/Login/components/password_field_redon
 import 'package:restaurante_raices/services/get_it.dart';
 import 'package:restaurante_raices/services/repository/usuario_repository.dart';
 import 'package:restaurante_raices/shared/components/constants.dart';
-import 'package:restaurante_raices/shared/components/loading.dart';
 import 'package:restaurante_raices/shared/components/pantalla_fix.dart';
 
 class Login extends StatelessWidget {
@@ -34,7 +33,8 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    MediaQueryData mq = MediaQuery.maybeOf(context);
+    Size size = mq.size ?? 0;
 
     if (!loading) {
       return PantallaFix(
@@ -96,7 +96,7 @@ class _BodyState extends State<Body> {
       return PantallaFix(
         background: fondoBienvenida(),
         children: [
-          Loading(),
+          CircularProgressIndicator(),
         ],
       );
     }

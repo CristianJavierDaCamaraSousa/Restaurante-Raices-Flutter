@@ -11,7 +11,8 @@ class PantallaFix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    MediaQueryData mq = MediaQuery.maybeOf(context);
+    Size size = mq.size ?? 0;
     return Container(
       height: size.height,
       width: double.infinity,

@@ -22,18 +22,18 @@ class InputFieldRedondeado extends StatelessWidget {
       child: TextFormField(
         validator: validator,
         onChanged: onChanged,
-        cursorColor: ColorPrimarioClaro,
-        style: TextStyle(color: ColorPrimarioClaro),
+        cursorColor: ColorPrimario,
+        style: TextStyle(color: ColorPrimario),
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           icon: Icon(
             icon,
-            color: ColorPrimarioClaro,
+            color: ColorPrimario,
           ),
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.black26),
-          errorStyle: TextStyle(color: ColorPrimarioClaro),
-          errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: ColorPrimarioClaro)),
+          errorStyle: TextStyle(color: ColorPrimario),
+          errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: ColorPrimario)),
           border: InputBorder.none,
         ),
       ),

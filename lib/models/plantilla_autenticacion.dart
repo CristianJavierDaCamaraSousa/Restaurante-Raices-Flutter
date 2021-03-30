@@ -1,21 +1,14 @@
-class PlantillaAutenticacion {
-  @override
-  String toString() {
-    return super.toString();
-  }
-}
-
-class TokenPOJO implements PlantillaAutenticacion {
+class TokenPOJO {
   String token;
   TokenPOJO(this.token);
 }
 
-class MensajePOJO implements PlantillaAutenticacion {
+class MensajePOJO {
   String mensaje;
   MensajePOJO(this.mensaje);
 }
 
-class LogeadoPOJO implements PlantillaAutenticacion {
+class LogeadoPOJO {
   bool logeado;
   LogeadoPOJO(this.logeado);
 }
