@@ -1,3 +1,0 @@
-/*
-  Navigator.pushReplacementNamed(context, '/Login'),
-*/

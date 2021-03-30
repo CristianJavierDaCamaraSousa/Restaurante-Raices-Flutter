@@ -12,4 +12,9 @@ class RespuestasHTTP {
     this.body,
     this.autenticado,
   });
+
+  @override
+  String toString() {
+    return "HOLA";
+  }
 }

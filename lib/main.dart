@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurante_raices/models/plantilla_autenticacion.dart';
-import 'package:restaurante_raices/screens/wrapper.dart';
+import 'package:restaurante_raices/screens/Principal/pantalla_meseros/pantalla_meseros.dart';
 import 'package:restaurante_raices/services/get_it.dart';
 import 'package:restaurante_raices/services/repository/usuario_repository.dart';
 
@@ -17,10 +17,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider(
-          create: (_) => getIt.get<UsuarioRepository>().streamMensajes,
-          initialData: MensajePOJO(""),
-        ),
-        StreamProvider(
           create: (_) => getIt.get<UsuarioRepository>().streamLogeado,
           initialData: LogeadoPOJO(false),
         ),
@@ -32,7 +28,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Restaurante Raices',
         theme: ThemeData.light(),
-        home: Wrapper(),
+        //home: Wrapper(),
+        home: PantallaMesero(),
       ),
     );
   }

@@ -17,14 +17,14 @@ class YaTengoUnaCuenta extends StatelessWidget {
       children: <Widget>[
         Text(
           login ? "¿No tienes una cuenta? " : "¿Ya tienes una cuenta? ",
-          style: TextStyle(color: ColorPrimarioClaro),
+          style: TextStyle(color: ColorPrimario),
         ),
         GestureDetector(
           onTap: press,
           child: Text(
             login ? " Regístrate" : " Inicia sesión",
             style: TextStyle(
-              color: ColorPrimarioClaro,
+              color: ColorPrimario,
               fontWeight: FontWeight.bold,
             ),
           ),

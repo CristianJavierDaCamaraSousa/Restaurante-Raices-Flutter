@@ -87,6 +87,16 @@ class UsuarioRepository {
     print("finalizado");
   }
 
+  static String tablaUsuarrio() {
+    print("Iniciado");
+
+    // Si no se hace exitosamente
+    //throw Exception('Error en la solicitud | Código: ${response.statusCode}');
+    return "poaksdasd";
+
+    print("finalizado");
+  }
+
   logoutTEMPORAL() {
     _token.sink.add(TokenPOJO("Bear "));
     _logeado.sink.add(LogeadoPOJO(false));
